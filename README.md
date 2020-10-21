@@ -25,9 +25,39 @@ Dari scatter di atas dapat dilihat hubungan antara atribut price dengan pie_sale
 Data akan dibuat terpisah menjadi dua yakni Independent variables dan Dependent Variable. 
 
 ### 1.  Regression dengan Scikit Learn (Model 1)
-Pada model 1 digunakan seluruh data tanpa adanya pemisahan antara training data dan testing data. Semua data akan digunakan untuk membuat model prediksi. Prediksi dilakukan dengan memasukkan nilai baru berupa rata-rata dari atribut price dan advertising yang masing-masing bernilai 6.6 dan 3.5. Hasil prediksi dari model adalah 401.12. Berikut merupakan intercept dan koefisien dari model yang dibangun.
+Pada model 1 digunakan seluruh data tanpa adanya pemisahan antara training data dan testing data. Semua data akan digunakan untuk membuat model prediksi. Data dipisah menjadi 2 yakni X berisi Independent varibles yakni atribut price dan advertising dan Y berisi Dependent varible yakni atribut pie_sales. Prediksi dilakukan dengan memasukkan variabel X.  Berikut merupakan intercept dan koefisien dari model yang dibangun.
 
 ![model1](/img/intercept_coeffecient.png)
+
+Pengujian model linear regresi menggunakan MAE, MSE, RMSE, dan R-squared.
+- MAE (Mean Absolute Error) mewakili selisih antara nilai sebenarnya dengan nilai prediksi yang didapatkan dengan rata-rata absolut dari selisih data.
+- MSE (Mean Squared Error) mewakili perbedaan antara nilai asli dan nilai prediksi yang didapat dengan mengkuadratkan selisih rata-rata dari data
+- RMSE (Root Mean Squared Error) adalah tingkat kesalahan menurut akar kuadrat MSE.
+- R-squared mewakili tingkat ketepatan dari model yang menunjukkan presentasi variasi dari Dependent variable yang dapat dijelaskan oleh Independent variables. Semakin mendekati 1 maka semakin baik modelnya. 
+
+Pada model yang dibangun mendapatkan hasil sebagai berikut:
+
+- MAE: 34.545
+
+- MSE: 1802.2204
+
+- RMSE: 42.452
+
+- R-squared: 0.521
+
+Nilai RMSE = 42.452 menunjukkan bahwa rata-rata perbedaan antara nilai prediksi dengan nilai asli .
+
+Nilai R-squared = 0.521 menunjukkan bahwa data kurang bervariasi.
+
+Untuk analisis residual menggunakan scatter plot dan histogram.
+
+Data residual antara nilai asli dan nilai prediksi berbentuk linear 
+
+![residu1](/img/scatter_model1.png)
+
+![residu2](/img/histogram_model1.png)
+
+Berdasarkan histogram dengan bentuk yang demikian menandakan bahwa normalitas pada data telah bagus.
 
 ### 2.	Regression dengan Scikit Learn (Model 2)
 Pada model 2 menggunakan training data dan testing data. Training data sebesar 70% dan testing data sebesar 30% dari total dataset. Training data digunakan untuk membuat model prediksi. Dan Testing data digunakan untuk melakukan uji terhadap model yang dihasilkan dari data training dengan membuat prediksi dari testing data. Hasil prediksi akan dibandingkan dengan nilai sebenarnya dari testing data. 
@@ -51,21 +81,21 @@ Pada model yang dibangun mendapatkan hasil sebagai berikut:
 
 - R-squared: 0.501
 
-Nilai RMSE = 48.23 menunjukkan bahwa rata-rata perbedaan antara nilai prediksi dengan nilai asli terpaut cukup tinggi.
+Nilai RMSE = 48.23 menunjukkan bahwa rata-rata perbedaan antara nilai prediksi dengan nilai asli .
 
-Nilai R-squared = 0.501 menunjukkan bahwa data kurang bervariasi, sehingga model menjadi kurang baik.
+Nilai R-squared = 0.501 menunjukkan bahwa data kurang bervariasi.
 
 Untuk analisis residual menggunakan scatter plot dan histogram.
 
 Data residual antara nilai asli dan nilai prediksi berbentuk linear 
 
-![residu1](/img/scatter.png)
+![residu3](/img/scatter.png)
 
-![residu1](/img/histogram.png)
+![residu4](/img/histogram.png)
 
 Berdasarkan histogram dengan bentuk yang demikian menandakan bahwa normalitas pada data telah bagus.
 
-### 3.	Regression dengan Statsmodel
+### 3.	Regression dengan Statsmodel Model 1
 Dengan Statsmodel akan dilakukan eksplorasi lebih lanjut terhadap data. Model yang dimasukkan untuk eksplorasi lebih lanjut adalah model 1 yang menggunakan seluruh data. Model akan melakukan prediksi terhadap Independent variable yang nantinya akan di rangkum menjadi satu kesatuan hasil yang dapat digunakan untuk menganalisis data. Berikut adalah hasil dari model:
 
 ![statmodel](/img/statsmodel.png)
@@ -76,7 +106,7 @@ Jumlah data (n)= 15
 
 Jumlah Independent variables (k)= 2
 
-#### **R-squared**
+### **R-squared**
 Dikarenakan jumlah Independent varibels adalah 2 maka digunakan R-squared, karena Adjusted R-squared digunakan untuk regresi dengan lebih dari dua Independent variables. 
 
 Nilai **R-squared = 0.521** menunjukkan bahwa atribut price dan advertising hanya mempengaruhi price_sales sebesar 52.1% dan terdapat 47.9% dipengaruhi oleh atribut lain yang mungkin tidak dimasukkan ke dalam data.
@@ -85,12 +115,26 @@ Nilai **R-squared = 0.521** menunjukkan bahwa atribut price dan advertising hany
 ---
 
 
-#### **Autocorrelation dengan Durbin Watson**
-Nilai **Durbin-Watson (D)=1.683**. Berdasarkan pada tabel Durbin-Watson untuk n=15 dan k=2 nilai untuk dL=0.9455 dan dU=1.5432.
+### **Autocorrelation dengan Durbin Watson**
+H0: tidak terdapat autocorrelation
+
+H1: ada autocorrelation
+
+Nilai **Durbin-Watson (D)=1.683**. Berdasarkan pada tabel Durbin-Watson untuk n=15 dan k=2. 
 
 ![tabelDW](/img/dw.png)
 
-**D > dU dan D < 2**
+dL=0.9455 
+
+dU=1.5432. 
+
+4-dU=2.4568
+
+4-dL=3.0545 
+
+**D > dU dan D < 4-dU**
+
+Sehingga H0 diterima
 
 Membuktikan **tidak ada autocorrelation** pada data.
 
@@ -101,38 +145,36 @@ Membuktikan **tidak ada autocorrelation** pada data.
 
 #### **F-Test**
 
-**Dengan menggunakan p-value**:
+H0: tidak terdapat autocorrelation
 
-Nilai p-value untuk atribut **price=0.04**
-
-Nilai p-value untuk atribut **advertising=0.014**
-
-Karena nilai kedua atribut memiliki nilai p-value<$\alpha$ maka dapat disimpulkan jika atribut price dan advertising akan **mempengaruhi pie_sales**
+H1: ada autocorrelation
 
 **Dengan menggunakan F-Test**
 
 Nilai **F-statistic=6.539**.
 
-Tingkat signifikansi menggunakan $\alpha$= 5% atau 0.005.
+Tingkat signifikansi menggunakan $\alpha$= 5% atau 0.05.
 
 Dengan n=15, k=2
 
 Maka, 
+
 df1 = 2
 
-df2 = n-k-1 = 15-2-1=12
+df2 = 12
 
 Berdasarkan table distribusi F maka nilai **F=3.89**
 
-![tabelF](/img/Ftest.png)
-
 **F-statistic > F**, artinya secara signifikan atribut price dan advertising secara bersama-sama berpengaruh terhadap pie_sales. 
-
 
 ---
 
 
 ### **T-Test**
+
+H0: Secara parsial tidak ada pengaruh yang terlalu signifikan
+
+Ha: Secara parsial ada pengaruh yang signifikan
 
 ![tabelT](/img/Ttest.png)
 
@@ -144,11 +186,11 @@ Dengan t=-2.306
 
 Dengan alpha = 5%/2 = 2.5% (uji 2 sisi)
 
-df = n-k-1 = 15-2-1=12
+df = 12
 
 maka berdasarkan table distribusi T maka nilai T = 2.17881.
 
-**-t < -T**, artinya secara parsial ada pengaruh signifikan antara Price dengan pie_sales. 
+**-t < -T**, H0 ditolak dan artinya secara parsial ada pengaruh signifikan antara Price dengan pie_sales. 
 
 **Atribut Advertising**
 
@@ -158,11 +200,10 @@ Dengan t=2.855
 
 Dengan alpha = 5%/2 = 2.5% (uji 2 sisi)
 
-df 2 = n-k-1 = 15-2-1=12
+df = 12
 
 maka berdasarkan table distribusi T maka nilai T = 2.17881.
 
-**t > T**, artinya secara parsial ada pengaruh signifikan antara advertising dengan pie_sales. 
+**t > T**, H0 ditolak, artinya secara parsial ada pengaruh signifikan antara advertising dengan pie_sales. 
 
-Kesimpulan pada t-Tes menunjukkan bahwa atribut price dan atribut advertising sama-sama memiliki pengaruh terhadap pie_sales
-
+Kesimpulan pada t-Tes menunjukkan bahwa atribut price dan atribut advertising sama-sama memiliki pengaruh yang signifikan terhadap pie_sales
