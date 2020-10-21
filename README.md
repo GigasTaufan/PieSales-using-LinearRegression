@@ -318,3 +318,13 @@ maka berdasarkan table distribusi T maka nilai T = 2.36462
 **t < T**, artinya H0 diterima dan secara parsial tidak ada pengaruh signifikan antara atribut advertising dengan pie_sales. 
 
 Kesimpulan pada t-Tes menunjukkan bahwa atribut price dan atribut advertising sama-sama memiliki pengaruh yang tidak terlalu signifikan terhadap pie_sales
+
+# KESIMPULAN
+
+Model 1 dan Model 2 sama-sama dapat memprediksi bagaimana pie_sales berdasarkan atribut price dan advertising, sama-sama tidak memiliki autocorrelation. 
+
+Untuk model 1 memiliki RMSE=42.245 dan R-squared=0.52. Sedangkankan model 2 memiliki RMSE=48.23 dan R-squared=0.5. Model 1 memiliki tingkat selisih antara data prediksi dan data asli yang lebih sedikit daripada model 2, sehingga dapat memprediksi dengan lebih akurat ketimbang model 2. 
+
+Mesikupun model 1 memiliki performa yang lebih baik daripada model 2, akan tetapi nilainya masih kurang bagus. Selisih rata-rata dari model masih cukup besar dan Dikarenakan dataset hanya berjumlah 15 baris, maka dirasa kurang untuk membuat model linear regresi yang ideal. 
+
+Dilihat dari model statistik berdasarkan model 1, bahwa atribut price dan advertising hanya dapat mempengaruhi 52.1% nilai prediksi, 47.9% dipengaruhi atribut lain yang mungkin tidak dimasukkan dalam dataset.
