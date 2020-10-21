@@ -100,8 +100,6 @@ Dengan Statsmodel akan dilakukan eksplorasi lebih lanjut terhadap data. Model ya
 
 ![statmodel](/img/statsmodel.png)
 
-Berikut adalah analisis dari statmodel:
-
 Jumlah data (n)= 15
 
 Jumlah Independent variables (k)= 2
@@ -148,6 +146,8 @@ Membuktikan **tidak ada autocorrelation** pada data.
 H0: tidak terdapat autocorrelation
 
 H1: ada autocorrelation
+
+![tabelF](/img/Ftest.png)
 
 **Dengan menggunakan F-Test**
 
@@ -207,3 +207,114 @@ maka berdasarkan table distribusi T maka nilai T = 2.17881.
 **t > T**, H0 ditolak, artinya secara parsial ada pengaruh signifikan antara advertising dengan pie_sales. 
 
 Kesimpulan pada t-Tes menunjukkan bahwa atribut price dan atribut advertising sama-sama memiliki pengaruh yang signifikan terhadap pie_sales
+
+### 4.	Regression dengan Statsmodel Model 2
+Dengan Statsmodel akan dilakukan eksplorasi lebih lanjut terhadap data. Model yang dimasukkan untuk eksplorasi lebih lanjut adalah model 2 yang menggunakan training dan testing data. Model akan melakukan prediksi terhadap Independent variable yang nantinya akan di rangkum menjadi satu kesatuan hasil yang dapat digunakan untuk menganalisis data. Berikut adalah hasil dari model:
+
+![statmodel2](/img/statsmodel_model2.png)
+
+Jumlah data (n)= 10
+
+Jumlah Independent variables (k)= 2
+
+### **R-squared**
+
+Nilai **R-squared = 0.465** menunjukkan bahwa atribut price dan advertising hanya mempengaruhi price_sales sebesar 45.6% dan terdapat 64.4% dipengaruhi oleh atribut lain yang mungkin tidak dimasukkan ke dalam data.
+
+
+---
+
+
+### **Autocorrelation dengan Durbin Watson**
+H0: tidak terdapat autocorrelation
+
+H1: ada autocorrelation
+
+Nilai **Durbin-Watson (D)=2.290**. Berdasarkan pada tabel Durbin-Watson untuk n=10 dan k=2 
+
+![tabelDW2](/img/dw2.png)
+
+dL=0.6972
+
+dU=1.6413
+
+4-dU=2.3587
+
+4-dL=3.3028
+
+**D > dU dan D < 4-dL** 
+
+Sehingga H0 diterima.
+
+Membuktikan **tidak ada autocorrelation** pada data.
+
+
+---
+
+
+
+### **F-Test**
+H0: Secara bersamaan tidak ada pengaruh yang terlalu signifikan
+
+Ha: Secara bersamaan ada pengaruh yang signifikan
+
+![tabelF2](/img/Ftest2.png)
+
+**Dengan menggunakan F-Test**
+
+Nilai **F-statistic=3.036**.
+
+Tingkat signifikansi menggunakan $\alpha$= 5% atau 0.05.
+
+Dengan n=10, k=2
+
+Maka, 
+
+df1 = 2
+
+df2 = 7
+
+Berdasarkan table distribusi F maka nilai **F=4.74**
+
+**F-statistic < F**, artinya H0 ditolak dan secara signifikan atribut price dan advertising secara bersama-sama tidak berpengaruh terhadap pie_sales. 
+
+
+---
+
+
+### **T-Test**
+H0: Secara parsial tidak ada pengaruh yang terlalu signifikan
+
+Ha: Secara parsial ada pengaruh yang signifikan
+
+![tabelT2](/img/Ttest2.png)
+
+**Atribut Price**
+
+Tingkat signifikansi menggunakan $\alpha$ = 5% atau 0.05.
+
+Dengan t=-1.352
+
+Dengan alpha = 5%/2 = 2.5% (uji 2 sisi)
+
+df = 7
+
+maka berdasarkan table distribusi T maka nilai T = -2.36462
+
+**-t > -T**, artinya H0 diterima dan secara parsial tidak ada pengaruh signifikan antara atribut price dengan pie_sales. 
+
+**Atribut Advertising**
+
+Tingkat signifikansi menggunakan $\alpha$ = 5% atau 0.05.
+
+Dengan t=2.274
+
+Dengan alpha = 5%/2 = 2.5% (uji 2 sisi)
+
+df = 7
+
+maka berdasarkan table distribusi T maka nilai T = 2.36462
+
+**t < T**, artinya H0 diterima dan secara parsial tidak ada pengaruh signifikan antara atribut advertising dengan pie_sales. 
+
+Kesimpulan pada t-Tes menunjukkan bahwa atribut price dan atribut advertising sama-sama memiliki pengaruh yang tidak terlalu signifikan terhadap pie_sales
