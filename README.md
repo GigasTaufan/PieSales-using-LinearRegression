@@ -2,6 +2,8 @@
 
 Tugas Minggu-4 Digital Talent Incubator - Telkom
 
+[Multiple Linear Regression](https://colab.research.google.com/drive/1rF0urGo9MdJ6-RzrzU5trf68e7t2w_A_?usp=sharing)
+
 ## a. Identifikasi Masalah
 Diberikan sebuah dataset yang berisikan data penjualan kue pie selama 15 minggu. Data tersebut akan digunakan untuk melakukan evaluasi faktor-faktor yang dianggap mempengaruhi penjualan kue pie. Berikut adalah atribut-atribut yang terdapat pada dataset tersebut.
 
