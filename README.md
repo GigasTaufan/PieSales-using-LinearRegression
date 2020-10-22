@@ -1,4 +1,7 @@
 # Pie Sales Linear Regression
+
+Tugas Minggu-4 Digital Talent Incubator - Telkom
+
 ## a. Identifikasi Masalah
 Diberikan sebuah dataset yang berisikan data penjualan kue pie selama 15 minggu. Data tersebut akan digunakan untuk melakukan evaluasi faktor-faktor yang dianggap mempengaruhi penjualan kue pie. Berikut adalah atribut-atribut yang terdapat pada dataset tersebut.
 
