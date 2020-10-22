@@ -7,11 +7,21 @@ Diberikan sebuah dataset yang berisikan data penjualan kue pie selama 15 minggu.
 3. **price** (dalam $): harga kue pie pada minggu tersebut merupakan Independent Variable
 4. **advertising** (dalam $100): biaya iklan dalam minggu tersebut merupakan Independent Variable
 
-### Exploratory Data Analysis
 ![dataset](/img/dataset.png)
 
 Table tersebut berisikan data-data penjualan kue pie. Setiap atribut menunjukkan faktor-faktor yang dianggap mempengaruhi penjualan kue pie. Untuk atribut week hanya digunakan sebagai penunjuk urutan minggu keberapa untuk atribut pie_sales, price, dan advertising sehingga bisa di drop.
-Selanjutnya memvisualisasikan atribut price, advertising serta pie_salses dengan menggunakan scatter plot.
+
+## b. Exploratory Data Analysis
+
+Untuk dapat membangun model linear regresi maka diperlukan keterhubungan antar atribut. 
+
+![pairplot](/img/pairplot.png)
+
+Dari grafik di atas terdapat kemungkinan adanya hubungan antar atribut price dan advertising terhadap atribut pie_sales.
+
+Atribut price dan advertising dianggap sebagai Independent variables (X), dan atribut pie_sales dianggap dianggap sebagai Dependent variable (Y)
+
+Untuk dapat melihat bagaimana bagaimana pengaruh X terhadap Y dapat dilakukan dengan grafik dibawah
 
 ![visualisasi](/img/download.png)
 
@@ -21,13 +31,27 @@ Dari scatter di atas dapat dilihat hubungan antara atribut price dengan pie_sale
 
 - Pada hubungan antara atribut advertising dengan pie_sales memiliki relasi positif, berarti jika nilai advertising semakin tinggi, maka pie_sales akan ikut tinggi.
 
-## b. Model Analisis
+**Multikolinieritas**
+
+Untuk dapat melihat bagaimana setiap Independent variables berkolerasi dengan dependent variables maka bisa melihat pada grafik korelasi
+
+![multikorelasi](/img/multikorelasi.png)
+
+Berdasarkan grafik tersebut dapat dilihat bahwa atribut price memiliki korelasi negatif dengan pie_sales, dan atribut advertising memiliki korelasi positif dengan pie_sales. Kedua memiliki nilai korelasi yang mendekati 0, sehingga tidak terdapat kedua atribut tersebut memenuhi sifat independent dan tidak saling mempengaruhi
+
+## c. Model Analisis
 Data akan dibuat terpisah menjadi dua yakni Independent variables dan Dependent Variable. 
 
 ### 1.  Regression dengan Scikit Learn (Model 1)
 Pada model 1 digunakan seluruh data tanpa adanya pemisahan antara training data dan testing data. Semua data akan digunakan untuk membuat model prediksi. Data dipisah menjadi 2 yakni X berisi Independent varibles yakni atribut price dan advertising dan Y berisi Dependent varible yakni atribut pie_sales. Prediksi dilakukan dengan memasukkan variabel X.  Berikut merupakan intercept dan koefisien dari model yang dibangun.
 
 ![model1](/img/intercept_coeffecient.png)
+
+Model 1 akan membentuk rumus linear regresi yakni:
+
+    y = b0 + b1X1 + b2X2
+
+    y = 306.526 - 24.975(price) + 74.13(advertising)
 
 Pengujian model linear regresi menggunakan MAE, MSE, RMSE, dan R-squared.
 - MAE (Mean Absolute Error) mewakili selisih antara nilai sebenarnya dengan nilai prediksi yang didapatkan dengan rata-rata absolut dari selisih data.
@@ -45,25 +69,31 @@ Pada model yang dibangun mendapatkan hasil sebagai berikut:
 
 - R-squared: 0.521
 
-Nilai RMSE = 42.452 menunjukkan bahwa rata-rata perbedaan antara nilai prediksi dengan nilai asli .
+Nilai RMSE = 42.245 menunjukkan rata-rata perbedaan antara nilai prediksi dan nilai asli yang cukup tinggi.
 
-Nilai R-squared = 0.521 menunjukkan bahwa data kurang bervariasi.
+Nilai R-squared = 0.52 menunjukkan bahwa atribut price dan advertising hanya dapat memprediksi 52% nilai dari keseluruhan nilai pada pie_sales
 
 Untuk analisis residual menggunakan scatter plot dan histogram.
 
-Data residual antara nilai asli dan nilai prediksi berbentuk linear 
-
 ![residu1](/img/scatter_model1.png)
+
+Bentuk pada grafik yang hampir merata secara diagonal menandakan bahwa ada hubungan linear dari Independent variables dan dependent variable
 
 ![residu2](/img/histogram_model1.png)
 
-Berdasarkan histogram dengan bentuk yang demikian menandakan bahwa normalitas pada data telah bagus.
+Bentuk diagram menunjukkan diagram yang bisa dianggap memenuhi anggapan bahwa residual terdistribusi dengan normal
 
 ### 2.	Regression dengan Scikit Learn (Model 2)
 Pada model 2 menggunakan training data dan testing data. Training data sebesar 70% dan testing data sebesar 30% dari total dataset. Training data digunakan untuk membuat model prediksi. Dan Testing data digunakan untuk melakukan uji terhadap model yang dihasilkan dari data training dengan membuat prediksi dari testing data. Hasil prediksi akan dibandingkan dengan nilai sebenarnya dari testing data. 
 Berikut meripakan intercept dan koefisien dari model yang dibangun:
 
 ![model2](/img/intercept_coeffecient_train_test.png)
+
+Model 2 akan membentuk rumus linear regresi yakni:
+
+    y = b0 + b1X1 + b2X2
+
+    y = 308.398 - 21.996(price) + 71.296(advertising)
 
 Pengujian model linear regresi menggunakan MAE, MSE, RMSE, dan R-squared.
 - MAE (Mean Absolute Error) mewakili selisih antara nilai sebenarnya dengan nilai prediksi yang didapatkan dengan rata-rata absolut dari selisih data.
@@ -83,17 +113,17 @@ Pada model yang dibangun mendapatkan hasil sebagai berikut:
 
 Nilai RMSE = 48.23 menunjukkan bahwa rata-rata perbedaan antara nilai prediksi dengan nilai asli .
 
-Nilai R-squared = 0.501 menunjukkan bahwa data kurang bervariasi.
+Nilai R-squared = 0.501 menunjukkan bahwa atribut price dan advertising hanya dapat memprediksi 50% nilai dari keseluruhan nilai pada pie_sales
 
-Untuk analisis residual menggunakan scatter plot dan histogram.
-
-Data residual antara nilai asli dan nilai prediksi berbentuk linear 
+Untuk analisis residual menggunakan scatter plot dan histogram. 
 
 ![residu3](/img/scatter.png)
 
+Bentuk pada grafik yang hampir merata secara diagonal menandakan bahwa ada hubungan linear dari Independent variables dan dependent variable
+
 ![residu4](/img/histogram.png)
 
-Berdasarkan histogram dengan bentuk yang demikian menandakan bahwa normalitas pada data telah bagus.
+Bentuk diagram menunjukkan diagram yang bisa dianggap memenuhi anggapan bahwa residual terdistribusi dengan normal
 
 ### 3.	Regression dengan Statsmodel Model 1
 Dengan Statsmodel akan dilakukan eksplorasi lebih lanjut terhadap data. Model yang dimasukkan untuk eksplorasi lebih lanjut adalah model 1 yang menggunakan seluruh data. Model akan melakukan prediksi terhadap Independent variable yang nantinya akan di rangkum menjadi satu kesatuan hasil yang dapat digunakan untuk menganalisis data. Berikut adalah hasil dari model:
@@ -319,7 +349,7 @@ maka berdasarkan table distribusi T maka nilai T = 2.36462
 
 Kesimpulan pada t-Tes menunjukkan bahwa atribut price dan atribut advertising sama-sama memiliki pengaruh yang tidak terlalu signifikan terhadap pie_sales
 
-# KESIMPULAN
+## d. Kesimpulan
 
 Model 1 dan Model 2 sama-sama dapat memprediksi bagaimana pie_sales berdasarkan atribut price dan advertising, sama-sama tidak memiliki autocorrelation. 
 
